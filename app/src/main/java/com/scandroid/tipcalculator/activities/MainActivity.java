@@ -18,6 +18,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.scandroid.tipcalculator.R;
 
+import java.util.Locale;
+
 import static com.scandroid.tipcalculator.lib.Utils.showInfoDialog;
 
 public class MainActivity extends AppCompatActivity {
@@ -100,9 +102,8 @@ public class MainActivity extends AppCompatActivity {
             int percent = sbTipPercent.getProgress();
             double tip = amount * percent / 100.0;
             double total = amount + tip;
-            tvTip.setText(String.valueOf(tip));
-            tvTotal.setText(String.valueOf(total));
-
+            tvTip.setText(String.format(Locale.getDefault(), "$%.2f", tip));
+            tvTotal.setText(String.format(Locale.getDefault(), "$%.2f", total));
         }
     }
 
@@ -152,6 +153,6 @@ public class MainActivity extends AppCompatActivity {
     private void showAbout() {
         dismissSnackBarIfShown();
         showInfoDialog(MainActivity.this, "About Tip Calculator",
-                "A quick way to calculate your tip!" + "/nEnjoy!");
+                "A quick way to calculate your tip!\nEnjoy!");
     }
 }
